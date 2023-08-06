@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sample Page</title>
+</head>
+<body>
+<h1>Friend List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Num</th>
+        <th>Name</th>
+        <th>phone</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>registDate</th>
+        <th>modifyDate</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="friend:${list}">
+<!--        <th scope="row">[[${friend.fno}]]</th>-->
+        <td>
+            <a th:href="@{/board/read(fno=${friend.fno})}">[[${friend.fno}]]</a>
+        </td>
+        <td>[[${friend.name}]]</td>
+        <td>[[${friend.address}]]</td>
+        <td>[[${friend.email}]]</td>
+        <td>[[${friend.phone}]]</td>
+        <td>[[${#temporals.format(friend.regDate, 'yyyy-MM-dd')}]]</td>
+        <td>[[${#temporals.format(friend.modDate, 'yyyy-MM-dd')}]]</td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/board/register}">regist</a>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Modify</title>
+</head>
+<form th:action="@{/board/modify}" method="post" id="f1">
+  <input type="text" th:value="${friend.fno}" name="fno" readonly>
+  <input type="text" th:value="${friend.name}" name="name">
+  <input type="text" th:value="${friend.address}" name="address">
+  <input type="text" th:value="${friend.email}" name="email">
+  <input type="text" th:value="${friend.phone}" name="phone">
+
+
+  <button type="button" class="delete">delete</button>
+  <button type="button" class="modify">modify</button>
+  <button type="button" class="list">list</button>
+</form>
+
+
+
+
+</html>
+<script th:inline="javascript">
+  const formObj =document.querySelector("#f1")
+  const fno = [[${friend.fno}]]
+
+  document.querySelector(".delete").addEventListener("click", function(e){
+    e.preventDefault()
+    e.stopPropagation()
+
+    formObj.action = `/board/delete`
+    formObj.method ='post'
+    formObj.submit()
+  }, false)
+
+  document.querySelector(".modify").addEventListener("click", function(e){
+    e.preventDefault()
+    e.stopPropagation()
+    formObj.action = `/board/modify`
+    formObj.method ='post'
+    formObj.submit()
+  }, false)
+
+  document.querySelector(".list").addEventListener("click", function(e){
+    e.preventDefault()
+    e.stopPropagation()
+    formObj.action = `/board/list`
+    formObj.method ='get'
+    formObj.submit()
+  }, false)
+</script>
